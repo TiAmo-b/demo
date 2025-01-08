@@ -2,6 +2,7 @@
 <link href="https://cdn.jsdelivr.net/npm/quill-table-better@1/dist/quill-table-better.css" rel="stylesheet" />
 <script src="https://cdn.jsdelivr.net/npm/quill@2/dist/quill.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/quill-table-better@1/dist/quill-table-better.js"></script>
+<script src="./str.js"></script>
 <style>
 
   #save-button {
@@ -42,15 +43,25 @@
     }
   };
   const quill = new Quill('#root', options);
+   // 获取 URL 中的查询参数
+  const urlParams = new URLSearchParams(window.location.search);
+  const content = urlParams.get('data');
+  if(content) {
+    quill.root.innerHTML = content;
+  }
   // 在 WebView 页面中，监听接收来自小程序的数据
-  window.addEventListener('message', function(event) {
-    if (event.data.type === 'init') {
-      // 获取传递的默认内容
-      const defaultContent = event.data.content;
-      // 在编辑器中加载默认内容
-      quill.root.innerHTML = defaultContent;
-    }
-  });
+  // window.addEventListener('message', function(event) {
+  //   console.log(event,'event');
+    
+  //   if (event.data.type === 'init') {
+  //     // 获取传递的默认内容
+  //     const defaultContent = event.data.content;
+  //     console.log(defaultContent,'defaultContent');
+      
+  //     // 在编辑器中加载默认内容
+  //     quill.root.innerHTML = defaultContent;
+  //   }
+  // });
   // 保存内容并发送给小程序
   document.getElementById('save-button').addEventListener('click', () => {
     const content = quill.root.innerHTML;
