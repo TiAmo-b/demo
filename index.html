@@ -14,10 +14,28 @@
     const quill = new Quill('#editor', {
       theme: 'snow',
       modules: {
-        toolbar: [
-          ['bold', 'italic', 'underline'],
-          ['image', 'table'],
-        ],
+        toolbar: {
+          container: [
+              [
+                'bold',
+                'italic',
+                'underline',
+                { header: 1 },
+                { header: 2 },
+                { list: 'ordered' },
+                { list: 'bullet' },
+                'clean',
+              ],
+              ['table-better'],
+              ['image']
+            ],
+          },
+          table: false,
+            'table-better': {
+              language: 'zh_CN',
+              menus: ['column', 'row', 'merge', 'table', 'cell', 'wrap', 'delete'],
+              toolbarTable: true
+          },
       },
     });
 
