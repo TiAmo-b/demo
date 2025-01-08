@@ -50,18 +50,18 @@
     quill.root.innerHTML = content;
   }
   // 在 WebView 页面中，监听接收来自小程序的数据
-  // window.addEventListener('message', function(event) {
-  //   console.log(event,'event');
+  window.addEventListener('message', function(event) {
+    console.log(event,'event');
     
-  //   if (event.data.type === 'init') {
-  //     // 获取传递的默认内容
-  //     const defaultContent = event.data.content;
-  //     console.log(defaultContent,'defaultContent');
+    if (event.data.type === 'init') {
+      // 获取传递的默认内容
+      const defaultContent = event.data.content;
+      console.log(defaultContent,'defaultContent');
       
-  //     // 在编辑器中加载默认内容
-  //     quill.root.innerHTML = defaultContent;
-  //   }
-  // });
+      // 在编辑器中加载默认内容
+      quill.root.innerHTML = defaultContent;
+    }
+  });
   // 保存内容并发送给小程序
   document.getElementById('save-button').addEventListener('click', () => {
     const content = quill.root.innerHTML;
